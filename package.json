@@ -1,0 +1,22 @@
+{
+  "name": "mochat-doc",
+  "version": "0.1.0",
+  "description": "wework app of hyperf",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs",
+    "docs:build": "vuepress build docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hyperf",
+    "wework",
+    "mochat"
+  ],
+  "author": "mochat",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress": "^1.7.1"
+  }
+}
