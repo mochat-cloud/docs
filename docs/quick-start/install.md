@@ -52,8 +52,8 @@ php bin/hyperf.php start
 
 #### H5侧边栏编译
 ```
-npm install
-npm run build
+yarn install
+yarn run build
 ```
 #### PC后台编译
 ```
