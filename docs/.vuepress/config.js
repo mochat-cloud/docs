@@ -3,7 +3,7 @@ module.exports = {
     description: '让企业微信开发更简单',
     themeConfig: {
         nav: [
-            { text: 'github', link: 'https://github.com/mochat-cloud/mochat' },
+            { text: 'Github', link: 'https://github.com/mochat-cloud/mochat' },
             { text: '应用开发', link: '/app-dev/example' },
         ],
         sidebar: [
