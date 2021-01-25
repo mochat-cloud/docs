@@ -7,7 +7,9 @@ title: 安装
 
 MoChat 对系统环境有一些要求，仅可运行于 Linux 和 Mac 环境下，但由于 Docker 虚拟化技术的发展，在 Windows 下也可以通过 Docker for Windows 来作为运行环境，通常来说 Mac 环境下，我们更推荐本地环境部署，以避免 Docker 共享磁盘缓慢导致 MoChat 启动速度慢的问题。   
 
-[mochat-cloud\mochat-docker](https://github.com/mochat-cloud/mochat-docker) 项目内已经为您准备好了各种版本的 Dockerfile ，或直接基于已经构建好的 [mochat\mochat](https://hub.docker.com/r/mochat/mochat) 镜像来运行。   
+[mochat-cloud\mochat-docker](https://github.com/mochat-cloud/mochat-docker) 项目内已经为您准备好了各种版本的 Dockerfile ，或直接基于已经构建好的 [mochat\mochat](https://hub.docker.com/r/mochat/mochat) 镜像来运行。
+
+> 以上 Github 暂未提交，请暂时参考项目中的 `api-server/Dockerfile`
 
 当您不想采用 Docker 来作为运行的环境基础时，您需要确保您的运行环境达到了以下的要求：   
 
@@ -23,7 +25,7 @@ MoChat 对系统环境有一些要求，仅可运行于 Linux 和 Mac 环境下�
 
 ## 安装 MoChat
 
-Hyperf 使用 [Composer](https://getcomposer.org) 来管理项目的依赖，在使用 MoChat 之前，请确保你的运行环境已经安装好了 Composer。
+MoChat 使用 [Composer](https://getcomposer.org) 来管理项目的依赖，在使用 MoChat 之前，请确保你的运行环境已经安装好了 Composer。
 
 - 建议将 Composer 镜像设置为阿里云镜像，加速国内下载速度
 
@@ -42,11 +44,9 @@ cd /data/www
 git clone https://github.com/mochat-cloud/mochat.git
 ```
 
-### 环境安装
+### PHP接口环境安装
 
-#### PHP后端接口
-
-##### Shell 安装方式
+#### Shell 安装方式
 * 为了方便非 `docker` 用户，我们额外提供了一个`install.sh` CentOS 下的环境安装脚本，你可以直接在相应的系统上运行。
 
 ```
@@ -57,7 +57,7 @@ chmod o+x ./CentOS-install.sh
 sh ./CentOS-install.sh
 ```
 
-如自行编译安装 PHP 相关环境，wxwork_finance_sdk 的安装可参考：https://github.com/oh-stone/wework-chatdata-sdk 
+如自行编译安装 PHP 相关环境，wxwork_finance_sdk 的安装可参考：[https://github.com/oh-stone/wework-chatdata-sdk](https://github.com/oh-stone/wework-chatdata-sdk)
 
 
 
@@ -109,7 +109,7 @@ INSERT INTO `mc_tenant` (`server_ips`) VALUES ('["182.92.11.11"]');
 
 由于 MoChat 是持久化的 CLI 框架，当您修改完您的代码后，通过 `CTRL + C` 终止当前启动的进程实例，并重新执行 `php bin/hyperf.php start` 启动命令即可。
 
-### Docker 方式安装
+#### Docker 方式安装
 * 为了节省复杂度，我们推荐您使用项目下已经编写好的 `Dockerfile` 环境
 * 开发、测试环境下，您可以使用`docker-compose.sample.yml`来直接运行容器
 * 线上正式环境，我们推荐使用K8S，使用滚动更新来应对系统的平滑重启
@@ -136,7 +136,7 @@ docker-compose up
 - trace
 - uopz
 
-### 前端
+### 前端项目编译
 * 项目安装前，需要安装 `Node.js`，目前已知 15.x 版本下项目编译会有问题。
 
 * 修改 `.env` 中的配置 `VUE_APP_API_BASE_URL=接口地址`，以下的4种都是正确的格工，请根据您的实际情况进行配置。
