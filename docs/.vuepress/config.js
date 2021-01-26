@@ -48,7 +48,7 @@ module.exports = {
                 sidebarDepth: 3,
                 children: [
                     '/framework/catalogue',
-                    '/framework/standards',
+                    '/framework/layering',
                     '/framework/exception',
                 ]
             },

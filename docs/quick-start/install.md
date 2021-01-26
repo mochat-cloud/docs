@@ -71,7 +71,7 @@ php -v
 php --ri swoole
 
 # 查看 Reids FFMpeg wxwork_finance_sdk 扩展是否正确安装
-php --ri reids
+php --ri redis
 php --ri FFMpeg
 php --ri wxwork_finance_sdk
 
