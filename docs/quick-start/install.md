@@ -207,10 +207,7 @@ server {
 ```
 server {
     listen 80;
-    
     server_name dashboard.mochat.dev;
-    root /data/www/mochat/dashboard/dist;
-    index index.html;
 
     access_log /var/log/nginx/dashboard.mochat.dev.log main;
     error_log /var/log/nginx/dashboard.mochat.dev.log.err error;
@@ -218,10 +215,9 @@ server {
     rewrite_log off;
 
     location / {
-        if (!-e $request_filename) {
-            rewrite /(.*)$ /index.html last;
-            break;
-        }
+        root /data/www/mochat/dashboard/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
     }
 
     location = /favicon.ico {
@@ -235,8 +231,6 @@ server {
 server {
     listen 80;
     server_name sidebar.mochat.dev;
-    root /data/www/mochat/sidebar/dist;
-    index index.html;
 
     access_log /var/log/nginx/sidebar.mochat.dev.log main;
     error_log /var/log/nginx/sidebar.mochat.dev.log.err error;
@@ -244,10 +238,9 @@ server {
     rewrite_log off;
 
     location / {
-        if (!-e $request_filename) {
-            rewrite /(.*)$ /index.html last;
-            break;
-        }
+        root /data/www/mochat/sidebar/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
     }
 
     location = /favicon.ico {
