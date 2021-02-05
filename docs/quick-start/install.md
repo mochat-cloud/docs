@@ -5,7 +5,11 @@ title: 安装
 
 ## 服务器要求
 
-MoChat 对系统环境有一些要求，仅可运行于 Linux 和 Mac 环境下，但由于 Docker 虚拟化技术的发展，在 Windows 下也可以通过 Docker for Windows 来作为运行环境，通常来说 Mac 环境下，我们更推荐本地环境部署，以避免 Docker 共享磁盘缓慢导致 MoChat 启动速度慢的问题。   
+MoChat 对系统环境有一些要求，仅可运行于 Linux 和 Mac 环境下，但由于 Docker 虚拟化技术的发展，在 Windows 下也可以通过 Docker for Windows 来作为运行环境，通常来说 Mac 环境下，我们更推荐本地环境部署，以避免 Docker 共享磁盘缓慢导致 MoChat 启动速度慢的问题。 
+
+::: warning 提示
+MoChat 基于 Docker-compose 方式的安装视频 [https://www.bilibili.com/video/BV1Dy4y1n77N/](https://www.bilibili.com/video/BV1Dy4y1n77N/)  
+:::
 
 [mochat-cloud\mochat-docker](https://github.com/mochat-cloud/mochat-docker) 项目内已经为您准备好了各种版本的 Dockerfile ，或直接基于已经构建好的 [mochat\mochat](https://hub.docker.com/r/mochat/mochat) 镜像来运行。
 
