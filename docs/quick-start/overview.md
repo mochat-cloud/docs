@@ -5,7 +5,7 @@ title: 快速开始
 # 快速开始
 
 ::: warning 提示
-因为mochat构建在hyperf之上，所以我们假定您对hyperf已经基本熟悉
+因为 MoChat 构建在 Hyperf 之上，所以我们假定您对 Hyperf 已经基本熟悉
 :::
 
 ## 控制器
