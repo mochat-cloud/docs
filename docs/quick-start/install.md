@@ -18,13 +18,16 @@ MoChat 基于 Docker-compose 方式的安装视频 [https://www.bilibili.com/vid
 当您不想采用 Docker 来作为运行的环境基础时，您需要确保您的运行环境达到了以下的要求：   
 
  - PHP >= 7.2  (推荐7.4版本)
- - Swoole PHP 扩展 >= 4.5，并关闭了 `Short Name`
- - OpenSSL PHP 扩展
- - JSON PHP 扩展
- - PDO PHP 扩展
- - Redis PHP 扩展
- - FFMpeg PHP 扩展 （会话存档功能需要）
+ - MYSQL >= 5.7  
+ - Swoole PHP 扩展 >= 4.5，并关闭了 `Short Name`  
+ - OpenSSL PHP 扩展 
+ - JSON PHP 扩展 
+ - PDO PHP 扩展 
+ - Redis PHP 扩展 
+ - Composer 
+ - FFMpeg（会话存档功能需要）
  - wxwork_finance_sdk PHP 扩展 （会话存档功能需要）
+ - Node.js >= 10
 
 
 ## 安装 MoChat
