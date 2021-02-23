@@ -77,10 +77,12 @@ php -v
 # 查看 Swoole 版本安装是否正确，并确定 `swoole.use_shortname` 参数值为 `Off` 
 php --ri swoole
 
-# 查看 Reids FFMpeg wxwork_finance_sdk 扩展是否正确安装
+# 查看 Reids wxwork_finance_sdk 扩展是否正确安装
 php --ri redis
-php --ri FFMpeg
 php --ri wxwork_finance_sdk
+
+# FFMpeg
+ffmpeg -version
 
 # 确保内存大于 1024M
 php -i | grep memory_limit

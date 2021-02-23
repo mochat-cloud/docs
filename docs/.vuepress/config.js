@@ -50,6 +50,7 @@ module.exports = {
                     '/framework/catalogue',
                     '/framework/layering',
                     '/framework/exception',
+                    '/framework/log',
                 ]
             },
             {
