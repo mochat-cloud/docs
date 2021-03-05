@@ -62,6 +62,16 @@ module.exports = {
                     '/app-dev/example',
                 ]
             },
+            {
+                title: '企业微信相关',
+                path: '/wework/',
+                collapsable: false,
+                sidebarDepth: 3,
+                children: [
+                    '/wework/use-faq',
+                    '/wework/weixin-compare-wework',
+                ]
+            },
         ]
     },
     markdown: {
