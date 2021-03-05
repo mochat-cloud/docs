@@ -68,6 +68,9 @@ module.exports = {
                 collapsable: false,
                 sidebarDepth: 3,
                 children: [
+                    '/wework/how-to-authorize',
+                    '/wework/get-corpid-secret',
+                    '/wework/add-sidebar-app',
                     '/wework/use-faq',
                     '/wework/weixin-compare-wework',
                 ]
