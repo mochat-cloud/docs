@@ -37,6 +37,7 @@ module.exports = {
                 sidebarDepth: 3,
                 children: [
                     '/quick-start/install',
+                    '/quick-start/install-bt',
                     '/quick-start/overview',
                     '/quick-start/questions',
                 ]
