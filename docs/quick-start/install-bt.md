@@ -53,7 +53,7 @@
     ```
     ~# cd /www
 	/www# git clone https://github.com/pangdahua/php7-wxwork-finance-sdk.git
-	/www# wget https://wwcdn.weixin.qq.com/node/wework/images/sdk_20200401.z
+	/www# wget https://wwcdn.weixin.qq.com/node/wework/images/sdk_20200401.zip
 	```
 	![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/wxwork-finance-sdk-az.png)
 	```
