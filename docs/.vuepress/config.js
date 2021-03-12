@@ -50,6 +50,7 @@ module.exports = {
                 children: [
                     '/framework/catalogue',
                     '/framework/layering',
+                    '/framework/standards',
                     '/framework/exception',
                     '/framework/log',
                 ]
