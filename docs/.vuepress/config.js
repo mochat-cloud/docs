@@ -51,6 +51,7 @@ module.exports = {
                     '/framework/catalogue',
                     '/framework/layering',
                     '/framework/standards',
+                    '/framework/config',
                     '/framework/exception',
                     '/framework/log',
                 ]

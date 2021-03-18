@@ -27,7 +27,7 @@ title: 配置
 | REDIS_DB      | Redis数据库号 | 0  | 
 | SIMPLE_JWT_SECRET  | jwt加密串 |    | 
 | SIMPLE_JWT_PREFIX  | jwt缓存前缀 | mc_jwt_  | 
-| FILE_DRIVER      | 文件驱动 | local  | 
+| FILE_DRIVER      | 文件驱动 | local，支持oss、qiniu、cos、s3、ftp  | 
 | OSS_ACCESS_ID      | 阿里云OSS配置 |    | 
 | OSS_ACCESS_SECRET  | 阿里云OSS配置 |    | 
 | OSS_BUCKET      | 阿里云OSS配置 |    | 
