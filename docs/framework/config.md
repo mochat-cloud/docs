@@ -2,6 +2,8 @@
 title: 配置
 ---
 
+# 配置
+
 > 强烈建议先阅读  [Hyperf 框架配置章节](https://hyperf.wiki/2.1/#/zh-cn/config)
 
 ## 后端环境变量
@@ -9,7 +11,7 @@ title: 配置
 文件位置  api-server/.env
 
 | 变量名        | 变量说明         | 默认值  |
-| ------------- |:-------------:| -----:|
+| ------------- |-------------| -----|
 | APP_NAME      | 应用名称 | mochat  | 
 | APP_ENV      | 应用环境 |  dev  | 
 | DB_DRIVER      | 数据库驱动 | mysql  | 
