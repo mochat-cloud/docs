@@ -34,6 +34,12 @@
 
 将url（外部联系人事件服务器URL）、token 和encodingAESKey，复制这三个内容填入企业微信后台对应入口即可（上图）
 
+**第五步：** 登录【企业微信后台】--【我的企业】--【外部沟通管理】-- 点击成员使用权限 -- 将对应的成员加上。
+![img_12.png](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/img_32.png)
+
+**第六步：** 登录【企业微信后台】--【客户联系】--【权限配置】-- 修改客户联系和客户群使用范围 -- 将对应的成员加上。
+![img_12.png](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/img_33.png)
+
 
 
 
