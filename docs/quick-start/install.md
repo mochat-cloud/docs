@@ -223,6 +223,8 @@ server {
         root /data/www/mochat/dashboard/dist;
         index index.html;
         try_files $uri $uri/ /index.html;
+        # 缓存30天
+        expires 30d;
     }
 
     location = /favicon.ico {
@@ -246,6 +248,8 @@ server {
         root /data/www/mochat/sidebar/dist;
         index index.html;
         try_files $uri $uri/ /index.html;
+        # 缓存30天
+        expires 30d;
     }
 
     location = /favicon.ico {
