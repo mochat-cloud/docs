@@ -271,6 +271,23 @@
         * 如何添加侧边栏应用：[https://mochat.wiki/wework/add-sidebar-app.html](https://mochat.wiki/wework/add-sidebar-app.html)
   
     
+## 常见问题
+
+* nginx设置反向代理后，返回 502 bad gateway？
+
+请检查后端 api-server 启动成功没有，命令如下：
+
+```bash
+ps aux | grep mochat
+```
+
+看看有没有对应的进程，如果没有，刚需执行如下命令启动
+```php
+cd /www/wwwroot/mochat/api-server
+nohup php bin/hyperf.php start &
+```
+
+为了服务稳定，建议使用更专业的进程管理工具来启动，详见：[https://hyperf.wiki/2.1/#/zh-cn/tutorial/supervisor](Supervisor 部署)
      
     
     
