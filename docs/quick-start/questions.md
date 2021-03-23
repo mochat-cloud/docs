@@ -33,3 +33,16 @@ location /{
   error_page 404 /index.html;
 }
 ```
+
+## 安装都正常，但是登陆一直提示账号密码错误
+
+可能的原因有以下几种，请按此排查：
+* 1、通过 chrome 的 开发者工具中 network 查看接口的请求地址、参数、响应是否对；
+
+* 2、dashboard 和 sidebar 的 .env 中接口URL未修改或配置错误，请严格按 [前端项目配置修改](https://mochat.wiki/framework/config.html#%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F) 进行配置；
+
+* 3、数据库初始化不成功，请查看数据库 `mc_user` 表中是否有数据；
+
+* 4、检查 api-server/runtime/logs 目录下有没有的 error 日志，根据日志提示信息进行排查； 
+
+
