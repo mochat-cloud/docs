@@ -41,8 +41,38 @@ location /{
 
 * 2、dashboard 和 sidebar 的 .env 中接口URL未修改或配置错误，请严格按 [前端项目配置修改](https://mochat.wiki/framework/config.html#%E5%89%8D%E7%AB%AF%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F) 进行配置；
 
-* 3、数据库初始化不成功，请查看数据库 `mc_user` 表中是否有数据；
+* 3、后端接口服务 api-server 没有启动，输入如下命令看是否启动；
 
-* 4、检查 api-server/runtime/logs 目录下有没有的 error 日志，根据日志提示信息进行排查； 
+```bash
+# 看到下面这样，有比较多进程的，是正常运行中，否则表示未启动成功
+[root@mochat api-server]# ps aux | grep mochat
+root     11478  104  4.2 767048 326884 pts/2   Sl   11:39   0:05 mochat.Master
+root     11496  0.0  4.1 621460 316244 pts/2   S    11:39   0:00 mochat.Manager
+root     11499  0.0  4.1 770608 317444 pts/2   Sl   11:39   0:00 mochat.Worker.0
+root     11502  0.0  4.1 770608 317400 pts/2   Sl   11:39   0:00 mochat.Worker.1
+root     11505  0.0  4.1 775260 318388 pts/2   Sl   11:39   0:00 mochat.queue.default.0
+root     11508  0.0  4.1 775128 317712 pts/2   Sl   11:39   0:00 mochat.crontab-dispatcher.0
+root     11509  0.0  4.1 775260 318384 pts/2   Sl   11:39   0:00 mochat.queue.room.0
+root     11512  0.0  4.1 775260 318392 pts/2   Sl   11:39   0:00 mochat.queue.chat.0
+root     11515  0.0  4.1 775260 318392 pts/2   Sl   11:39   0:00 mochat.queue.coOSS.0
+root     11516  0.0  4.1 775260 318384 pts/2   Sl   11:39   0:00 mochat.queue.contact.0
+root     11517  0.0  4.1 775260 318388 pts/2   Sl   11:39   0:00 mochat.queue.employee.0
+root     11527  0.0  0.0 112820   980 pts/2    S+   11:39   0:00 grep --color=auto mochat
+```
+
+执行以下命令进行启动
+```bash
+# 确认目录正确
+[root@mochat api-server]# pwd
+/www/wwwroot/mochat/api-server
+# 后台启动或直接使用  php bin/hyperf.php start 启动
+[root@mochat api-server]# nohup php bin/hyperf.php start &
+[1] 11478
+[root@mochat api-server]# nohup: ignoring input and appending output to ‘nohup.out’
+```
+
+* 4、数据库初始化不成功，请查看数据库 `mc_user` 表中是否有数据；
+
+* 5、检查 api-server/runtime/logs 目录下有没有的 error 日志，根据日志提示信息进行排查； 
 
 
