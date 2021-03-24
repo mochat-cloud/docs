@@ -237,9 +237,32 @@
     * 网站 ---添加站点 dashboard.test php版本 纯静态，数据库 不创建 
 		网站目录 /www/wwwroot/mochat/dashboard/dist 如图：<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-dashbar-zd.png)
+    * 找到刚添加的网站，点右侧的设置，进入之后点配置文件，以如图所示的位置加上
+    
+    ```nginx
+    location / {
+          root /www/wwwroot/mochat/dashboard/dist;
+          index  index.html index.htm;
+          try_files $uri $uri/ /index.html;
+        }
+    ```
+   
+   ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
+    
     * 网站 ---添加站点 sidebar.test php版本 纯静态，数据库 不创建 
 		网站目录/www/wwwroot/mochat/sidebar/dist 如图：<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-sidebar-zd.png)
+    
+    * 找到刚添加的网站，点右侧的设置，进入之后点配置文件，以如图所示的位置加上
+        ```nginx
+        location / {
+              root /www/wwwroot/mochat/dashboard/dist;
+              index  index.html index.htm;
+              try_files $uri $uri/ /index.html;
+            }
+        ```
+      
+      ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
 4. **访问**
     * 后端接口访问 backend.test<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/fw-backend.png)
