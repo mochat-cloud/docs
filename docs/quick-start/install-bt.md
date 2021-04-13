@@ -256,7 +256,7 @@
     * 找到刚添加的网站，点右侧的设置，进入之后点配置文件，以如图所示的位置加上
         ```nginx
         location / {
-              root /www/wwwroot/mochat/dashboard/dist;
+              root /www/wwwroot/mochat/sidebar/dist;
               index  index.html index.htm;
               try_files $uri $uri/ /index.html;
             }
