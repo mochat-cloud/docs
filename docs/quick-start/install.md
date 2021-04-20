@@ -167,6 +167,7 @@ VUE_APP_API_BASE_URL=http://scrm.mochat.dev/api
 ```
 cd /data/www/mochat/sidebar
 yarn install
+yarn run dll
 yarn run build
 ```
 #### PC管理后台编译
