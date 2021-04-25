@@ -200,6 +200,7 @@
 	# cp .env.example .env
 	# vi .env #修改配置文件
 	# yarn install
+    # yarn run dll
 	# yarn run build （2小时15分 # Screen -S dashboard）
     ```
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/dashbard-install.png)<br/>

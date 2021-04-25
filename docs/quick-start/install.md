@@ -174,6 +174,7 @@ yarn run build
 ```
 cd /data/www/mochat/dashboard
 yarn install
+yarn run dll
 yarn run build
 ```
 
@@ -274,3 +275,5 @@ server {
 * 在浏览器输入 http://dashboard.mochat.dev
 * 进入项目，在系统设置 -> 授权管理 中点击 添加企业微信号
 * 如果您没有企业微信号，您可以到企业微信官网网站注册调试用的企业微信号
+* 如何授权绑定企业微信至MoChat系统 请查看：[https://mochat.wiki/wework/how-to-authorize.html](https://mochat.wiki/wework/how-to-authorize.html)
+* 如何添加侧边栏应用：[https://mochat.wiki/wework/add-sidebar-app.html](https://mochat.wiki/wework/add-sidebar-app.html)
