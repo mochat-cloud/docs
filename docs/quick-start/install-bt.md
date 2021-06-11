@@ -208,7 +208,7 @@
     * **PC管理后台**
 
     > ### <font color=red>这里修改的域名一定要写成后端api接口的域名，不要写错了。
-    比如，http://api.mochat.com 或 http://backend.test </font>
+    > ### 比如，http://api.mochat.com 或 http://backend.test </font>
     
     
     ```
@@ -225,7 +225,7 @@
     * **侧边栏**
     
     > ### <font color=red>这里修改的域名一定要写成后端api接口的域名，不要写错了。
-    比如，http://api.mochat.com 或 http://backend.test </font>
+    > ### 比如，http://api.mochat.com 或 http://backend.test </font>
     
     
     ```
