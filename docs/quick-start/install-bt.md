@@ -2,6 +2,18 @@
    
 > 感谢 MoChat 开发者群群友 @小天 提供的原始安装笔记。
 
+## 安装前必看重要提示：
+
+由于项目是前后端分离方式开发和部署的，所以安装演示过程中会用到三个域名：
+* 管理控制台：dashboard.test
+* 聊天侧边栏：sidebar.test
+* 后端API接口：backend.test
+
+假设你自己的主域名是 mochat.com，那你可以分别配置为，以下域名可以自定义，下面只是举例：
+* 管理控制台：scrm.mochat.com
+* 聊天侧边栏：h5.mochat.com
+* 后端API接口：api.mochat.com
+
 
 ## 安装宝塔面板
 1. 阿里云ECS服务器,重新初始化操作系统 , 申请OSS ALiyunOS,安全组开放宝塔8888端口
@@ -194,11 +206,15 @@
    
 2. **配置前端**
     * **PC管理后台**
+
+    > ### <font color=red>这里修改的域名一定要写成后端api接口的域名，不要写错了。
+    比如，http://api.mochat.com 或 http://backend.test </font>
+    
     
     ```
     # cd /www/wwwroot/mochat/dashboard
 	# cp .env.example .env
-	# vi .env #修改配置文件
+	# 这里修改的域名一定要写成后端api接口的域名，不要写错了，比如，http://api.mochat.com 或 http://backend.test	# vi .env #修改配置文件，不会vi可以用其他编辑器打开该文件
 	# yarn install
     # yarn run dll
 	# yarn run build （2小时15分 # Screen -S dashboard）
@@ -208,9 +224,15 @@
 
     * **侧边栏**
     
+    > ### <font color=red>这里修改的域名一定要写成后端api接口的域名，不要写错了。
+    比如，http://api.mochat.com 或 http://backend.test </font>
+    
+    
     ```
-    # cd /www/wwwroot/mochat/sidebar
+   # cd /www/wwwroot/mochat/sidebar
 	# cp .env.example .env
+	# 这里修改的域名一定要写成你自己的后端api接口的域名，不要写错了，比如，http://api.mochat.com 或 http://backend.test
+	# vi .env #修改配置文件，不会vi可以用其他编辑器打开该文件
 	# vi .env #修改配置文件
 	# yarn install
 	# yarn run build（1小时45分 # Screen -S sidebar）
@@ -288,7 +310,7 @@
     
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/update-password.png)
   
-    * 浏览器再次打开dashbard.test，输入用户名密码登录
+    * 浏览器再次打开dashboard.test，输入用户名密码登录
         * 如何授权绑定企业微信至MoChat系统 请查看：[https://mochat.wiki/wework/how-to-authorize.html](https://mochat.wiki/wework/how-to-authorize.html)
     
     * 侧边栏 sidebar.test
@@ -322,3 +344,4 @@ nohup php bin/hyperf.php start &
 
 
     
+
