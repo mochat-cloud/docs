@@ -172,7 +172,7 @@
 ## 安装项目
 
 1. **安装MoChat后端**
-    * 宝塔面板->软件商店->PHP-7.4->禁用函数->删除putenv,proc_open<br/>
+    * 宝塔面板->软件商店->PHP-7.4->禁用函数->删除putenv,proc_open,pcntl系列函数<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-del-putenv.png)<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-del-proc-open.png)
     * 执行以下命令安装项目
