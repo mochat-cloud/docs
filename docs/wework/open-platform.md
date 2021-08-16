@@ -56,6 +56,8 @@ php -r '$keyStrBase64 = "";while (strlen($keyStrBase64) !== 43) {$keyStr = rando
 ![open-platform-08.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-08.jpg)
 ![open-platform-09.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-09.jpg)
 
+> 全网发布未通过，请将 redis 里面  `mc:easywechat.kernel.access_token.*` 的key删除掉
+
 #### 2.6 获取开放平台配置信息
 在详情页获取 APPID、APPSECRET、消息校验Token、消息加解密Key
 ![open-platform-15.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-15.jpg)
