@@ -399,7 +399,7 @@ cd /www/wwwroot/mochat/api-server
 php bin/hyperf.php server:start -d
 ```
 
-为了服务稳定，建议使用更专业的进程管理工具来启动，详见：[https://hyperf.wiki/2.1/#/zh-cn/tutorial/supervisor](Supervisor 部署)
+为了服务稳定，建议使用更专业的进程管理工具来启动，详见：[Supervisor 部署](https://hyperf.wiki/2.1/#/zh-cn/tutorial/supervisor)
      
     
     
