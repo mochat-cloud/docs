@@ -21,6 +21,20 @@
 #### 2.3 填写开发资料
 ![open-platform-05.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-05.jpg)
 
+授权事件接收URL:
+```
+# 将下面的域名换成 api-server 对应的域名
+https://demoapi.mo.chat/dashboard/officialAccount/authEventCallback
+```
+
+消息与事件接收URL:
+```
+# 将下面的域名换成 api-server 对应的域名
+https://demoapi.mo.chat/$APPID$/dashboard/officialAccount/messageEventCallback
+```
+
+
+
 生成消息校验Token:
 
 ```shell
