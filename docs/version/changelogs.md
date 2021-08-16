@@ -5,7 +5,7 @@ title: 版本更新记录
 # 版本更新记录
 
 ## 2021年8月15日
-* 发布 V1.0 版本，[V1.0升级教程] (https://mochat.wiki/upgrade/1.0.html)
+* 发布 V1.0 版本，[V1.0升级教程](https://mochat.wiki/upgrade/1.0.html)
 * 【代码优化】基础开发框架 Hyperf 版本由 2.0 升级至 2.2
 * 【代码优化】目录结构优化，将 api-server 拆分成核心应用和插件，便于后期扩展
 * 【新增功能】引流获客 - 门店活码

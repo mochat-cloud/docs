@@ -49,6 +49,14 @@ php -r '$keyStrBase64 = "";while (strlen($keyStrBase64) !== 43) {$keyStr = rando
 ![open-platform-16.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-16.jpg)
 
 将获取到的配置信息，填写在api-server/.env 中的相关配置中，填写完之后，需要重启api-server服务。
+```shell script
+## 微信开放平台第三方平台
+WECHAT_OPEN_PLATFORM_APP_ID=wx7549750xxxxxx
+WECHAT_OPEN_PLATFORM_SECRET=1c7228dfaaf485xxxx
+WECHAT_OPEN_PLATFORM_TOKEN=3Ws39X
+WECHAT_OPEN_PLATFORM_AES_KEY=wDlJSqn4xxxxxxxxxxxxxxxxxx
+```
+
 ```shell
 php bin/hyperf.php server:restart
 ```
