@@ -17,13 +17,14 @@ MoChat 基于 Docker-compose 方式的安装视频 [https://www.bilibili.com/vid
 
 当您不想采用 Docker 来作为运行的环境基础时，您需要确保您的运行环境达到了以下的要求：   
 
- - PHP >= 7.2  (推荐7.4版本)
+ - PHP >= 7.4  (推荐7.4版本)
  - MYSQL >= 5.7  
  - Swoole PHP 扩展 >= 4.5，并关闭了 `Short Name`  
  - OpenSSL PHP 扩展 
  - JSON PHP 扩展 
  - PDO PHP 扩展 
  - Redis PHP 扩展 
+ - pcntl PHP 扩展 
  - Composer 
  - FFMpeg（会话存档功能需要）
  - wxwork_finance_sdk PHP 扩展 （会话存档功能需要）
@@ -71,7 +72,7 @@ sh ./CentOS-install.sh
 ##### 确认相关环境正确安装
     
 ```shell script
-# 查看 PHP 版本是否正确，需 >= 7.2，建议 7.4
+# 查看 PHP 版本是否正确，需 >= 7.4
 php -v
 
 # 查看 Swoole 版本安装是否正确，并确定 `swoole.use_shortname` 参数值为 `Off` 
@@ -110,8 +111,11 @@ php bin/hyperf.php server:watch
 # 1、将 .env 中的 DB REDIS OSS DOMAIN 配置完成
 # 2、将数据库文件导入初始化 api-server/storage/install/mochat.sql
 # 3、执行初始租户和账号信息 SQL ，请注意修改下面的手机号和服务器IP，以下用户密码是 13412347867和123456
+# 4、使用下面的命令生成新密码，然后用SQL替换到 user 表里的密码就可以。
 
-INSERT INTO `mc_user` (`phone`,`password`,`status`,`isSuperAdmin`) VALUES ('13412347867','$2y$10$6PedNV6SVNQNpUMjZgauvewh7wfFjbSWbh2k9yGJ9dhAIBVcL4gKm',1,1);
+php -r "var_dump(password_hash(md5('具体密码' . ".env中的SIMPLE_JWT_SECRET"), PASSWORD_BCRYPT));"
+
+INSERT INTO `mc_user` (`phone`,`password`,`status`,`isSuperAdmin`) VALUES ('13412347867','这里填写生成的加密后的密码',1,1);
 
 INSERT INTO `mc_tenant` (`server_ips`) VALUES ('["182.92.11.11"]');
 ```
@@ -224,8 +228,19 @@ server {
     location / {
         root /data/www/mochat/dashboard/dist;
         index index.html;
-        try_files $uri $uri/ /index.html;
-        
+        try_files $uri $uri/ /index.html;  
+    }
+
+    location /authRedirect {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # http时使用下面的配置
+        proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+        # https时使用下面的配置
+        # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+        proxy_pass http://127.0.0.1:9501/dashboard/officialAccount/authRedirect/;
     }
     
     location ~* \.(?:jpg|jpeg|png|gif|ico|css|js)$ {
@@ -268,6 +283,59 @@ server {
 }
 ```
 
+### 前端-H5侧边栏配置
+```
+server {
+    listen 80;
+    server_name op.mochat.dev;
+
+    access_log /var/log/nginx/op.mochat.dev.log main;
+    error_log /var/log/nginx/op.mochat.dev.log.err error;
+    fastcgi_intercept_errors off;
+    rewrite_log off;
+
+    location / {
+        root /data/www/mochat/operation/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location ^~ /auth/ {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # http时使用下面的配置
+            proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+            # https时使用下面的配置
+            # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+    
+            proxy_pass http://127.0.0.1:9501/operation/auth/;
+       }
+    
+   location ^~ /openUserInfo/ {
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        # http时使用下面的配置
+        proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+        # https时使用下面的配置
+        # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+        proxy_pass http://127.0.0.1:9501/operation/openUserInfo/;
+   }
+    
+    location ~* \.(?:jpg|jpeg|png|gif|ico|css|js)$ {
+        # 缓存30天
+        expires 30d;
+    }
+    location = /favicon.ico {
+            log_not_found off;
+            access_log off;
+    }
+    
+}
+```
+
 # 运行
 
 ## 登录
@@ -275,5 +343,6 @@ server {
 * 在浏览器输入 http://dashboard.mochat.dev
 * 进入项目，在系统设置 -> 授权管理 中点击 添加企业微信号
 * 如果您没有企业微信号，您可以到企业微信官网网站注册调试用的企业微信号
-* 如何授权绑定企业微信至MoChat系统 请查看：[https://mochat.wiki/wework/how-to-authorize.html](https://mochat.wiki/wework/how-to-authorize.html)
-* 如何添加侧边栏应用：[https://mochat.wiki/wework/add-sidebar-app.html](https://mochat.wiki/wework/add-sidebar-app.html)
+* [如何授权绑定企业微信至MoChat系统](https://mochat.wiki/wework/how-to-authorize.html)
+* [如何添加侧边栏应用](https://mochat.wiki/wework/add-sidebar-app.html)
+* [如何配置开放平台&公众号配置](https://mochat.wiki/wework/open-platform.html)

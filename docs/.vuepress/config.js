@@ -68,6 +68,15 @@ module.exports = {
                 ]
             },
             {
+                title: '版本升级指南',
+                path: '/upgrade/',
+                collapsable: false,
+                sidebarDepth: 3,
+                children: [
+                    '/upgrade/1.0',
+                ]
+            },
+            {
                 title: '企业微信相关',
                 path: '/wework/',
                 collapsable: false,
@@ -76,6 +85,7 @@ module.exports = {
                     '/wework/how-to-authorize',
                     '/wework/get-corpid-secret',
                     '/wework/add-sidebar-app',
+                    '/wework/open-platform',
                     '/wework/use-faq',
                     '/wework/weixin-compare-wework',
                 ]

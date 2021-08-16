@@ -5,15 +5,16 @@
 ## 安装前必看重要提示：
 
 由于项目是前后端分离方式开发和部署的，所以安装演示过程中会用到三个域名：
-* 管理控制台：dashboard.test
+* 商户后台：dashboard.test
 * 聊天侧边栏：sidebar.test
 * 后端API接口：backend.test
+* 运营工具：operation.test
 
 假设你自己的主域名是 mochat.com，那你可以分别配置为，以下域名可以自定义，下面只是举例：
-* 管理控制台：scrm.mochat.com
+* 商户后台：scrm.mochat.com
 * 聊天侧边栏：h5.mochat.com
 * 后端API接口：api.mochat.com
-
+* 运营工具：op.mochat.com
 
 ## 安装宝塔面板
 1. 阿里云ECS服务器,重新初始化操作系统 , 申请OSS ALiyunOS,安全组开放宝塔8888端口
@@ -192,7 +193,7 @@
     
     ```
     # php bin/hyperf.php mc:init
-	# nohup php bin/hyperf.php start &
+	# php bin/hyperf.php server:start -d
     ```
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/mc-init.png)<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/mc-init-pz.png)<br/>
@@ -229,13 +230,12 @@
     
     
     ```
-   # cd /www/wwwroot/mochat/sidebar
+    # cd /www/wwwroot/mochat/sidebar
 	# cp .env.example .env
 	# 这里修改的域名一定要写成你自己的后端api接口的域名，不要写错了，比如，http://api.mochat.com 或 http://backend.test
 	# vi .env #修改配置文件，不会vi可以用其他编辑器打开该文件
-	# vi .env #修改配置文件
 	# yarn install
-	# yarn run build（1小时45分 # Screen -S sidebar）
+	# yarn run build
     ```
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/sidebar-install.png)<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/sidebar-build.png)
@@ -244,9 +244,36 @@
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/yarn-error.png)
     ```
     执行以下命令
-    # chattr -i /www/wwwroot/mochat/dashboard/dist/.user.ini  
+    # chattr -i /www/wwwroot/mochat/sidebar/dist/.user.ini  
     再进行删除
-    # rm -f /www/wwwroot/mochat/dashboard/dist/.user.ini 
+    # rm -f /www/wwwroot/mochat/sidebar/dist/.user.ini 
+    再次进入目录编译
+    # yarn run build
+    ```
+    
+    * **运营工具**
+        
+        > ### <font color=red>这里修改的域名一定要写成后端api接口的域名，不要写错了。
+        > ### 比如，http://api.mochat.com 或 http://backend.test </font>
+        
+        
+    ```
+    # cd /www/wwwroot/mochat/operation
+    # cp .env.example .env
+    # 这里修改的域名一定要写成你自己的后端api接口的域名，不要写错了，比如，http://api.mochat.com 或 http://backend.test
+    # vi .env #修改配置文件，不会vi可以用其他编辑器打开该文件
+    # yarn install
+    # yarn run build
+    ```
+    
+    > 注：如果再次修改.env配置文件重新构建项目时报如下错误，执行以下代码
+    
+    ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/yarn-error.png)
+    ```
+    执行以下命令
+    # chattr -i /www/wwwroot/mochat/operation/dist/.user.ini  
+    再进行删除
+    # rm -f /www/wwwroot/mochat/operation/dist/.user.ini 
     再次进入目录编译
     # yarn run build
     ```
@@ -286,6 +313,45 @@
         ```
       
       ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
+      
+    * 网站 ---添加站点 operation.test php版本 纯静态，数据库 不创建 
+    		网站目录/www/wwwroot/mochat/operation/dist 如图：<br/>
+        ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-sidebar-zd.png)
+        
+        * 找到刚添加的网站，点右侧的设置，进入之后点配置文件，以如图所示的位置加上
+            ```nginx
+            location / {
+                  root /www/wwwroot/mochat/operation/dist;
+                  index  index.html index.htm;
+                  try_files $uri $uri/ /index.html;
+                }
+          
+            location ^~ /auth/ {
+                        proxy_set_header Host $http_host;
+                        proxy_set_header X-Real-IP $remote_addr;
+                        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                        # http时使用下面的配置
+                        proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+                        # https时使用下面的配置
+                        # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+                
+                        proxy_pass http://127.0.0.1:9501/operation/auth/;
+                   }
+                
+               location ^~ /openUserInfo/ {
+                    proxy_set_header Host $http_host;
+                    proxy_set_header X-Real-IP $remote_addr;
+                    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                    # http时使用下面的配置
+                    proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+                    # https时使用下面的配置
+                    # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+            
+                    proxy_pass http://127.0.0.1:9501/operation/openUserInfo/;
+               }
+            ```
+          
+          ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
 4. **访问**
     * 后端接口访问 backend.test<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/fw-backend.png)
@@ -328,9 +394,9 @@ ps aux | grep mochat
 ```
 
 看看有没有对应的进程，如果没有，刚需执行如下命令启动
-```php
+```shell script
 cd /www/wwwroot/mochat/api-server
-nohup php bin/hyperf.php start &
+php bin/hyperf.php server:start -d
 ```
 
 为了服务稳定，建议使用更专业的进程管理工具来启动，详见：[https://hyperf.wiki/2.1/#/zh-cn/tutorial/supervisor](Supervisor 部署)
