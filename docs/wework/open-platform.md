@@ -19,8 +19,6 @@
 ![open-platform-04.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-04.jpg)
 
 #### 2.3 填写开发资料
-![open-platform-05.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-05.jpg)
-
 授权事件接收URL:
 ```
 # 将下面的域名换成 api-server 对应的域名
@@ -46,6 +44,7 @@ php -r 'echo str_replace(["/", "+", "="], "", base64_encode(random_bytes(random_
 ```shell
 php -r '$keyStrBase64 = "";while (strlen($keyStrBase64) !== 43) {$keyStr = random_bytes(32);$keyStrBase64 = str_replace(["/", "+", "="], "",base64_encode($keyStr));} echo $keyStrBase64 . "\n";'
 ```
+![open-platform-05.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-05.jpg)
 
 #### 2.4 提交成功
 
