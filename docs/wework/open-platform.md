@@ -76,37 +76,7 @@ WECHAT_OPEN_PLATFORM_AES_KEY=wDlJSqn4xxxxxxxxxxxxxxxxxx
 php bin/hyperf.php server:restart
 ```
 
-
-
-### 3、将公众号绑定开放平台
-此步为使用租户(商户配置)，非平台方配置。
-不绑定到开放平台无法获取到unionid
-
-### 3.1 点击菜单“公众账号-绑定公众号”
-
-按提示一步步操作即可
-
-![open-platform-11.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-11.jpg)
-
-![open-platform-12.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-12.jpg)
-
-### 4、配置公众号相关信息
-
-#### 3.1、登录公众账号平台
-[https://mp.weixin.qq.com/](https://mp.weixin.qq.com/)
-
-### 3.2、找到左侧菜单 - 设置与开发 - 基本配置
-![open-platform-10.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-10.jpg)
-
-在这里可以查看到绑定微信开放平台账号情况
- ![open-platform-13.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-13.jpg)
-
-### 3.3、找到左侧菜单 - 设置与开发 - 公众号设置
-点击右侧的“功能设置”，依次配置相关的域名
-![open-platform-14.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-14.jpg)
-
-> 公众号授权如果报错，可以尝试主动让微信服务器发送一下ticket
-
+> 商户后台时公众号授权如果报错 component_verify_ticket does not exist in cache ，可以尝试主动让微信服务器发送一下ticket
 
 ```shell script
 # 记得修改下面的 appid 和 secret之后再执行
