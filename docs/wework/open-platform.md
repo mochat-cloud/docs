@@ -105,3 +105,14 @@ php bin/hyperf.php server:restart
 点击右侧的“功能设置”，依次配置相关的域名
 ![open-platform-14.jpg](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/open-platform-14.jpg)
 
+> 公众号授权如果报错，可以尝试主动让微信服务器发送一下ticket
+
+
+```shell script
+# 记得修改下面的 appid 和 secret之后再执行
+curl --request POST \
+  --url https://api.weixin.qq.com/cgi-bin/component/api_start_push_ticket \
+  --header 'Content-Type: application/json' \
+  --header 'cache-control: no-cache' \
+  --data '{"component_appid": "wx76836ec4b5xxxx","component_secret": "4626018ce1d0785d5b1d86f3xxxx"}'
+```

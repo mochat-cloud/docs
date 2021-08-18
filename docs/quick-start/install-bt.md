@@ -295,6 +295,19 @@
           index  index.html index.htm;
           try_files $uri $uri/ /index.html;
         }
+    
+    location /authRedirect {
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            # http时使用下面的配置
+            proxy_cookie_path / "/; HttpOnly; SameSite=strict";
+            # https时使用下面的配置
+            # proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+    
+            proxy_pass http://127.0.0.1:9501/dashboard/officialAccount/authRedirect/;
+        }
+   
     ```
    
    ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
