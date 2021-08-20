@@ -50,7 +50,7 @@ MoChat 奉行『约定优于配置』，按照一套统一的约定进行应用�
 ### 业务架构
 严格的分层来保证架构的灵活性
 
-![架构](https://mochatcloud.oss-cn-beijing.aliyuncs.com/github/framework.png "mochat微信.png")
+![架构](https://mochatcloud.oss-cn-beijing.aliyuncs.com/github/framework2.png "mochat微信.png")
 
 ### 核心技术
 * 前端技术栈: `Vue`、`Vuex`、`Vant`、`Ant Design of Vue`

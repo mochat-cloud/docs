@@ -21,13 +21,13 @@
 #### 2.3 填写开发资料
 授权事件接收URL:
 ```
-# 将下面的域名换成 api-server 对应的域名
+# 将下面的域名换成 api-server 对应的域名，其中https或http看你项目的实际配置情况
 https://demoapi.mo.chat/dashboard/officialAccount/authEventCallback
 ```
 
 消息与事件接收URL:
 ```
-# 将下面的域名换成 api-server 对应的域名
+# 将下面的域名换成 api-server 对应的域名，其中https或http看你项目的实际配置情况
 https://demoapi.mo.chat/dashboard/$APPID$/officialAccount/messageEventCallback
 ```
 
