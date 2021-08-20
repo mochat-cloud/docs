@@ -34,8 +34,14 @@ title: 配置
 | OSS_ACCESS_SECRET  | 阿里云OSS配置 |    | 
 | OSS_BUCKET      | 阿里云OSS配置 |    | 
 | OSS_ENDPOINT    | 阿里云OSS配置 |    | 
-| APP_DOMAIN      | 后端接口域名(需要加http或https) |  如：https://api.mo.chat | 
-| JS_DOMAIN      | 侧边栏域名(需要加http或https) |  如：https://h5.mo.chat  | 
+| API_BASE_URL      | 后端接口URL(需要加http或https) |  如：https://api.mo.chat | 
+| DASHBOARD_BASE_URL      | 商户后台URL(需要加http或https) |  如：https://scrm.mo.chat  | 
+| SIDEBAR_BASE_URL      | 侧边栏URL(需要加http或https) |  如：https://sidebar.mo.chat  | 
+| OPERATION_BASE_URL      | 运营工具URL(需要加http或https) |  如：https://op.mo.chat  |
+| WECHAT_OPEN_PLATFORM_APP_ID    | 微信开放平台 appid |    | 
+| WECHAT_OPEN_PLATFORM_SECRET    | 微信开放平台 secret  |    | 
+| WECHAT_OPEN_PLATFORM_TOKEN    | 微信开放平台 消息校验 token  |    | 
+| WECHAT_OPEN_PLATFORM_AES_KEY    | 微信开放平台 加解密key  |    | 
 
 ## 前端环境变量
 
