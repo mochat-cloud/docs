@@ -28,7 +28,7 @@ https://demoapi.mo.chat/dashboard/officialAccount/authEventCallback
 消息与事件接收URL:
 ```
 # 将下面的域名换成 api-server 对应的域名
-https://demoapi.mo.chat/$APPID$/dashboard/officialAccount/messageEventCallback
+https://demoapi.mo.chat/dashboard/$APPID$/officialAccount/messageEventCallback
 ```
 
 
@@ -86,3 +86,5 @@ curl --request POST \
   --header 'cache-control: no-cache' \
   --data '{"component_appid": "wx76836ec4b5xxxx","component_secret": "4626018ce1d0785d5b1d86f3xxxx"}'
 ```
+
+由于 `component_verify_ticket`  只能由微信服务器推送至我们的服务器，无法主动获取，且推送为每 10 分钟一次，如果执行后还是不行，则需要等待 10 分钟再测试，具体流程可参考[微信官方文档 component_verify_ticket排错指南](https://developers.weixin.qq.com/doc/oplatform/Third-party_Platforms/2.0/troubleshooting/component_verify_ticket_troubleshooting.html)
