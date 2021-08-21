@@ -101,6 +101,8 @@ php bin/hyperf.php mc:init
 
 # 运行项目 (推荐使用Supervisor后台守护，具体使用可参考 Hyperf 官方文档-Supervisor部署)
 php bin/hyperf.php start
+# 或后台启动
+php bin/hyperf.php server:start -d
 
 # 或开发环境也可以使用 watch 命令来进行热更新
 php bin/hyperf.php server:watch
@@ -155,30 +157,46 @@ docker-compose up
 * 修改 `.env` 中的配置 `VUE_APP_API_BASE_URL=接口地址`，以下的4种都是正确的格工，请根据您的实际情况进行配置。
 ```shell script
 # 1、HTTP协议方式
-VUE_APP_API_BASE_URL=http://api.mochat.dev
+VUE_APP_API_BASE_URL=http://api.mochat.com
 
 # 2、HTTPS协议方式
-VUE_APP_API_BASE_URL=https://api.mochat.dev
+VUE_APP_API_BASE_URL=https://api.mochat.com
 
 # 3、HTTP协议与HTTPS协议同时兼容方式
-VUE_APP_API_BASE_URL=//api.mochat.dev
+VUE_APP_API_BASE_URL=//api.mochat.com
 
 # 4、子目录模式(需根据实际 Nginx 配置来确定是否 URL中是否需要加 api )
-VUE_APP_API_BASE_URL=http://scrm.mochat.dev/api
+VUE_APP_API_BASE_URL=http://scrm.mochat.com/api
 ```
 
 #### H5侧边栏编译
 ```
 cd /data/www/mochat/sidebar
+cp .env.example .env
+# 修改.env中的接口地址
+vim .env
+yarn install
+yarn run build
+```
+
+#### 商户管理后台编译
+```
+cd /data/www/mochat/dashboard
+cp .env.example .env
+# 修改.env中的接口地址
+vim .env
 yarn install
 yarn run dll
 yarn run build
 ```
-#### PC管理后台编译
+
+#### 运营工具H5编译
 ```
-cd /data/www/mochat/dashboard
+cd /data/www/mochat/operation
+cp .env.example .env
+# 修改.env中的接口地址
+vim .env
 yarn install
-yarn run dll
 yarn run build
 ```
 
@@ -186,9 +204,10 @@ yarn run build
 
 在这里我们会用到三个域名
 
-* api.mochat.dev 后端接口域名
-* dashboard.mochat.dev 管理后台前端代码域名
-* sidebar.mochat.dev H5聊天侧边栏前端代码域名
+* api.mochat.com 后端接口域名 api-server 对应的域名
+* scrm.mochat.com 商户后台域名 dashboard 对应的域名
+* sidebar.mochat.com 聊天侧边栏域名 sidebar 对应的域名
+* op.mochat.com 运营工具H5域名 operation 对应的域名
 
 项目位置 `/data/www/mochat`
 ### 后端-接口配置
@@ -197,7 +216,7 @@ server {
     # 监听端口
     listen 80; 
     # 绑定的域名，填写您的域名
-    server_name api.mochat.dev;
+    server_name api.mochat.com;
 
     location / {
         # 将客户端的 Host 和 IP 信息一并转发到对应节点  
@@ -218,10 +237,10 @@ server {
 ```
 server {
     listen 80;
-    server_name dashboard.mochat.dev;
+    server_name scrm.mochat.com;
 
-    access_log /var/log/nginx/dashboard.mochat.dev.log main;
-    error_log /var/log/nginx/dashboard.mochat.dev.log.err error;
+    access_log /var/log/nginx/scrm.mochat.com.log main;
+    error_log /var/log/nginx/scrm.mochat.com.log.err error;
     fastcgi_intercept_errors off;
     rewrite_log off;
 
@@ -258,10 +277,10 @@ server {
 ```
 server {
     listen 80;
-    server_name sidebar.mochat.dev;
+    server_name sidebar.mochat.com;
 
-    access_log /var/log/nginx/sidebar.mochat.dev.log main;
-    error_log /var/log/nginx/sidebar.mochat.dev.log.err error;
+    access_log /var/log/nginx/sidebar.mochat.com.log main;
+    error_log /var/log/nginx/sidebar.mochat.com.log.err error;
     fastcgi_intercept_errors off;
     rewrite_log off;
 
@@ -287,10 +306,10 @@ server {
 ```
 server {
     listen 80;
-    server_name op.mochat.dev;
+    server_name op.mochat.com;
 
-    access_log /var/log/nginx/op.mochat.dev.log main;
-    error_log /var/log/nginx/op.mochat.dev.log.err error;
+    access_log /var/log/nginx/op.mochat.com.log main;
+    error_log /var/log/nginx/op.mochat.com.log.err error;
     fastcgi_intercept_errors off;
     rewrite_log off;
 
@@ -340,7 +359,7 @@ server {
 
 ## 登录
 * 配置以上用到的三个域名对应的服务器IP至您的 host 文件
-* 在浏览器输入 http://dashboard.mochat.dev
+* 在浏览器输入 http://scrm.mochat.com
 * 进入项目，在系统设置 -> 授权管理 中点击 添加企业微信号
 * 如果您没有企业微信号，您可以到企业微信官网网站注册调试用的企业微信号
 * [如何授权绑定企业微信至MoChat系统](https://mochat.wiki/wework/how-to-authorize.html)
