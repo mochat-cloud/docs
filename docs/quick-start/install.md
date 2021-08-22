@@ -88,6 +88,9 @@ ffmpeg -version
 # 确保内存大于 1024M
 php -i | grep memory_limit
 
+# 以下函数不能禁用
+# symlink,putenv,proc_open,pcntl系列函数
+
 ```
 
 ```
