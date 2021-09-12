@@ -4,7 +4,7 @@ module.exports = {
     themeConfig: {
         nav: [
             { text: 'Github', link: 'https://github.com/mochat-cloud/mochat' },
-            { text: '应用开发', link: 'https://mochat.wiki/app-dev/example' },
+            { text: '插件开发', link: 'https://mochat.wiki/app-dev/example' },
             { text: '数据库字典', link: 'https://mochat.wiki/database/md/tables.html' },
             { text: 'API文档', link: 'https://mochat.wiki/api/' },
         ],
@@ -60,7 +60,7 @@ module.exports = {
                 ]
             },
             {
-                title: '应用开发',
+                title: '插件开发',
                 path: '/app-dev/',
                 collapsable: false,
                 sidebarDepth: 3,
