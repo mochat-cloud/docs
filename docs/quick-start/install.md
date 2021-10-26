@@ -225,7 +225,7 @@ server {
         # 设置跨域
         add_header Access-Control-Allow-Origin *;
         add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, PATCH, OPTIONS';
-        add_header Access-Control-Allow-Headers 'Accept,Origin,,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        add_header Access-Control-Allow-Headers 'Accept,Origin,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
         # 将客户端的 Host 和 IP 信息一并转发到对应节点  
         proxy_set_header Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;

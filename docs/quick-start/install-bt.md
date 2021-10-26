@@ -284,6 +284,24 @@
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-backend-zd.png)<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-backend-one.png)<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-backend-pz-two.png)
+    
+    配置完代理，点配置文件，增加跨域设置如下：
+    ```nginx
+    location ~* \.(gif|png|jpg|css|js|woff|woff2)$
+    {
+    	proxy_pass http://127.0.0.1:9501;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header REMOTE-HOST $remote_addr;
+        
+        # 设置跨域
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, PATCH, OPTIONS';
+        add_header Access-Control-Allow-Headers 'Accept,Origin,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
+        expires 12h;
+    }
+    ```
     * 网站 ---添加站点 dashboard.test php版本 纯静态，数据库 不创建 
 		网站目录 /www/wwwroot/mochat/dashboard/dist 如图：<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/bt-dashbar-zd.png)
