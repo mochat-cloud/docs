@@ -323,6 +323,10 @@
               index  index.html index.htm;
               try_files $uri $uri/ /index.html;
             }
+      
+        location ^~ /*.txt {
+            proxy_pass http://127.0.0.1:9501/;
+        } 
         ```
       
       ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
