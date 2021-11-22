@@ -74,6 +74,7 @@ module.exports = {
                 collapsable: false,
                 sidebarDepth: 3,
                 children: [
+                    '/upgrade/1.3',
                     '/upgrade/1.1',
                     '/upgrade/1.0',
                 ]
