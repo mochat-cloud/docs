@@ -87,3 +87,11 @@ root     11527  0.0  0.0 112820   980 pts/2    S+   11:39   0:00 grep --color=au
 * 5、检查 api-server/runtime/logs 目录下有没有的 error 日志，根据日志提示信息进行排查； 
 
 
+## 数据库报错 mysql Syntax error or access violation: 1055 Expression #1 of SELECT list is not in GROUP BY clause
+
+编辑 /etc/my.cnf，将sql_mode改为如下，然后重启MySQl。如果没有该配置则添加。
+```shell script
+sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+```
+
+参考链接：https://www.cnblogs.com/yangfei123/p/10178427.html
