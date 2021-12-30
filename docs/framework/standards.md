@@ -19,9 +19,9 @@ title: 代码开发规范
 | --- | --- | --- | --- | --- |
 | GET | photo/index | index | app/Action/Photo/Index.php | 查询 - 多条 (列表 - 分页搜索) |
 | GET | photo/show | show | app/Action/Photo/Show.php | 查询 - 单条 |
-| GET | photo/create | create | app/Action/Photo/Create.php | 添加 - 页面 |
-| POST |photo/store | store | app/Action/Photo/Store.php | 添加 - 动作 |
-| GET | photo/edit | edit | app/Action/Photo/Edit.php | 修改 - 页面 |
+| POST | photo/create | create | app/Action/Photo/Create.php | 添加 - 页面 |
+| POST | photo/store | store | app/Action/Photo/Store.php | 添加 - 动作 |
+| PUT | photo/edit | edit | app/Action/Photo/Edit.php | 修改 - 页面 |
 | PUT/PATCH | photo/update | update | app/Action/Photo/Update.php | 修改 - 动作 |
 | DELETE | photo/destroy | destroy | app/Action/Photo/Destroy.php | 删除 - 动作 |
 
