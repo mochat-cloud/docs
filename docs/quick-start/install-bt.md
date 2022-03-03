@@ -342,8 +342,9 @@
               try_files $uri $uri/ /index.html;
             }
       
-        location ^~ /*.txt {
-            proxy_pass http://127.0.0.1:9501/;
+        # 企业微信txt自动验证
+        location ^~ /WW_verify_ {
+            proxy_pass http://127.0.0.1:9501;
         } 
         ```
       
@@ -387,6 +388,61 @@
             ```
           
           ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/nginx-404-2.png)
+          
+    * 同理添加工作台和超管后台的前端代码
+    
+    工作台配置：
+    
+    ```nginx
+        location / {
+              root /www/wwwroot/mochat/workbench/dist;
+              index  index.html index.htm;
+              try_files $uri $uri/ /index.html;
+            }
+      
+        # 企业微信txt自动验证
+        location ^~ /WW_verify_ {
+            proxy_pass http://127.0.0.1:9501;
+        }
+    ```
+   
+    ```nginx
+    server {
+        listen 80;
+        server_name admin.mochat.com;
+    
+        access_log /var/log/nginx/admin.mochat.com.log main;
+        error_log /var/log/nginx/admin.mochat.com.log.err error;
+        fastcgi_intercept_errors off;
+        rewrite_log off;
+    
+        location / {
+            root /data/www/mochat/admin/dist;
+            index index.html;
+            try_files $uri $uri/ /index.html;
+        }
+    
+        location /api/ {
+            client_max_body_size   20m;
+            proxy_set_header Host $http_host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+    
+            # 执行代理访问真实服务器
+            proxy_pass http://127.0.0.1:9501/;
+        }
+    
+        location = /favicon.ico {
+                log_not_found off;
+                access_log off;
+        }
+        
+    }
+    ```
+
+   超管后台配置
+   
 4. **访问**
     * 后端接口访问 backend.test<br/>
     ![Image text](https://mochatcloud.oss-cn-beijing.aliyuncs.com/docs/bt/fw-backend.png)

@@ -138,7 +138,8 @@ CREATE TABLE "mc_foo" (
 ```
 `foo`模型层、服务层，快速生成
 ```shell
-php bin/hyperf.php mcGen:model foo
+# path改为你自己的插件路径
+php bin/hyperf.php mcGen:model foo --path=plugin/mochat/foo/src/Model
 ```
 生成文件内已包含了基本的`增删改查分页`的基本方法，如下
 ```

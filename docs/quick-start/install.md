@@ -95,7 +95,7 @@ php -i | grep memory_limit
 
 ```
 # 安装PHP依赖(./api-server目录下)
-cd /data/www/mochat/api-server
+cd /www/wwwroot/mochat/api-server
 composer install
 
 # 初始化项目，执行项目初始化命令，设置MySQL、Redis、OSS、默认用户等信息
@@ -174,7 +174,7 @@ VUE_APP_API_BASE_URL=http://scrm.mochat.com/api
 
 #### H5侧边栏编译
 ```
-cd /data/www/mochat/sidebar
+cd /www/wwwroot/mochat/sidebar
 cp .env.example .env
 # 修改.env中的接口地址
 vim .env
@@ -184,7 +184,7 @@ yarn run build
 
 #### 商户管理后台编译
 ```
-cd /data/www/mochat/dashboard
+cd /www/wwwroot/mochat/dashboard
 cp .env.example .env
 # 修改.env中的接口地址
 vim .env
@@ -195,7 +195,7 @@ yarn run build
 
 #### 运营工具H5编译
 ```
-cd /data/www/mochat/operation
+cd /www/wwwroot/mochat/operation
 cp .env.example .env
 # 修改.env中的接口地址
 vim .env
@@ -222,10 +222,6 @@ server {
     server_name api.mochat.com;
 
     location / {
-        # 设置跨域
-        add_header Access-Control-Allow-Origin *;
-        add_header Access-Control-Allow-Methods 'GET, POST, PUT, DELETE, PATCH, OPTIONS';
-        add_header Access-Control-Allow-Headers 'Accept,Origin,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Authorization';
         # 将客户端的 Host 和 IP 信息一并转发到对应节点  
         proxy_set_header Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -252,7 +248,7 @@ server {
     rewrite_log off;
 
     location / {
-        root /data/www/mochat/dashboard/dist;
+        root /www/wwwroot/mochat/dashboard/dist;
         index index.html;
         try_files $uri $uri/ /index.html;  
     }
@@ -269,11 +265,6 @@ server {
         proxy_pass http://127.0.0.1:9501/dashboard/officialAccount/authRedirect/;
     }
     
-    location ~* \.(?:jpg|jpeg|png|gif|ico|css|js)$ {
-        # 缓存30天
-        expires 30d;
-    }
-
     location = /favicon.ico {
             log_not_found off;
             access_log off;
@@ -292,23 +283,20 @@ server {
     rewrite_log off;
 
     location / {
-        root /data/www/mochat/sidebar/dist;
+        root /www/wwwroot/mochat/sidebar/dist;
         index index.html;
         try_files $uri $uri/ /index.html;
     }
-    
-    location ~* \.(?:jpg|jpeg|png|gif|ico|css|js)$ {
-        # 缓存30天
-        expires 30d;
+
+    # 企业微信txt自动验证
+    location ^~ /WW_verify_ {
+        proxy_pass http://127.0.0.1:9501;
     }
+    
     location = /favicon.ico {
             log_not_found off;
             access_log off;
     }
-
-    location ^~ /*.txt {
-        proxy_pass http://127.0.0.1:9501/;
-    } 
 }
 ```
 
@@ -324,7 +312,7 @@ server {
     rewrite_log off;
 
     location / {
-        root /data/www/mochat/operation/dist;
+        root /www/wwwroot/mochat/operation/dist;
         index index.html;
         try_files $uri $uri/ /index.html;
     }
@@ -353,10 +341,72 @@ server {
         proxy_pass http://127.0.0.1:9501/operation/openUserInfo/;
    }
     
-    location ~* \.(?:jpg|jpeg|png|gif|ico|css|js)$ {
-        # 缓存30天
-        expires 30d;
+    location = /favicon.ico {
+            log_not_found off;
+            access_log off;
     }
+    
+}
+```
+
+### 前端-超管后台配置
+```
+server {
+    listen 80;
+    server_name admin.mochat.com;
+
+    access_log /var/log/nginx/admin.mochat.com.log main;
+    error_log /var/log/nginx/admin.mochat.com.log.err error;
+    fastcgi_intercept_errors off;
+    rewrite_log off;
+
+    location / {
+        root /www/wwwroot/mochat/admin/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        client_max_body_size   20m;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
+
+        # 执行代理访问真实服务器
+        proxy_pass http://127.0.0.1:9501/;
+    }
+
+    location = /favicon.ico {
+            log_not_found off;
+            access_log off;
+    }
+    
+}
+```
+
+### 前端-移动工作台配置
+```
+server {
+    listen 80;
+    server_name workbench.mochat.com;
+
+    access_log /var/log/nginx/workbench.mochat.com.log main;
+    error_log /var/log/nginx/workbench.mochat.com.log.err error;
+    fastcgi_intercept_errors off;
+    rewrite_log off;
+
+    location / {
+        root /www/wwwroot/mochat/workbench/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 企业微信txt自动验证
+    location ^~ /WW_verify_ {
+        proxy_pass http://127.0.0.1:9501;
+    }
+
     location = /favicon.ico {
             log_not_found off;
             access_log off;
